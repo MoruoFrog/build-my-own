@@ -1,21 +1,21 @@
 // 多次band就像栈一样，最先绑定的最后执行，所以就会复写完成绑定的this，所以不能更改绑定的对象
 
-// 思路1: 维护最新的想要bind to的target
-const bind1 = (function generateBind() {
-  let target = null
+// 思路1: 维护最新的想要bind to的target，错误，先注释掉; To do
+// const bind1 = (function generateBind() {
+//   let target = null
 
-	return function(obj, ...args) {
-    target = obj
-    const curried = args
-    const that = this
-    return function(...args){
-      return that.apply(
-        target,
-        [...curried, ...args]
-      )
-    }
-	}
-})()
+// 	return function(obj, ...args) {
+//     target = obj
+//     const curried = args
+//     const that = this
+//     return function(...args){
+//       return that.apply(
+//         target,
+//         [...curried, ...args]
+//       )
+//     }
+// 	}
+// })()
 
 // 思路2： 如果已经被绑定了this，就不再绑定新的this
 function bind2(obj, ...args) {
